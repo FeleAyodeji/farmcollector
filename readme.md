@@ -1,7 +1,19 @@
 ````markdown
 # 🌾 FarmCollector API
 
-A Spring Boot application that collects and reports seasonal planting and harvesting data from farms. The API allows you to submit planting and harvesting records and generate reports by farm and crop per season.
+A Spring Boot application that collects and reports seasonal planting and harvesting data from farms. The API allows us to submit planting and harvesting records and generate reports by farm and crop per season.
+
+---
+
+## 🛠️ Tech Stack
+
+- Java 21
+- Spring Boot 3.5.3
+- Spring Data JPA
+- H2 Database
+- Maven
+- Lombok
+- REST API
 
 ---
 
@@ -29,7 +41,7 @@ Before running this application, ensure the following are installed on your mach
 
 ### Install Java
 
-- [Java 21 Installation Guide](https://adoptium.net/en-GB/temurin/releases/?version=21)
+- [Java 21 to be precised]
 
 ### Install Maven
 
@@ -42,8 +54,8 @@ Before running this application, ensure the following are installed on your mach
 ### 1. Clone or Download the Project
 
 ```bash
-git clone https://github.com/your-username/farm-collector-api.git
-cd farm-collector-api
+git clone https://github.com/FeleAyodeji/farmcollector.git
+cd farmcollector
 ````
 
 > Or download and unzip the project manually.
@@ -64,11 +76,11 @@ The application will start on **port 8080** by default.
 
 **Description**: Save planting data submitted by a farmer.
 
-**Request Body** (snake\_case keys matching your `FieldData` entity):
+**Request Body** (snake\_case keys format used):
 
 ```json
 {
-  "farm_name":       "Green Valley",
+  "farm_name":       "Ogbomosho farms",
   "season":          "2025-Q2",
   "crop_type":       "Maize",
   "planting_area":   3.5,
@@ -86,7 +98,7 @@ The application will start on **port 8080** by default.
 
 ```json
 {
-  "farm_name":      "Green Valley",
+  "farm_name":      "Ogbomosho farms",
   "season":         "2025-Q2",
   "crop_type":      "Maize",
   "actual_product": 1000
@@ -105,12 +117,12 @@ The application will start on **port 8080** by default.
 GET /api/reports/farm/2025-Q2
 ```
 
-**Sample Response** (snake\_case keys):
+**Sample Response** (snake\_case keys format used):
 
 ```json
 [
   {
-    "farm_name":      "Green Valley",
+    "farm_name":      "Ogbomosho farms",
     "expected_total": 1200,
     "actual_total":   1000
   }
@@ -145,7 +157,7 @@ GET /api/reports/crops/2025-Q2
 
 ## Testing with cURL
 
-Use the following `curl` commands in any terminal. Wrap JSON in single quotes on UNIX-like shells.
+Use the following `curl` commands in any terminal. If you're using Mac or Linux, make sure to put the JSON data inside single quotes
 
 ### ✅ Submit Planting Data
 
@@ -153,7 +165,7 @@ Use the following `curl` commands in any terminal. Wrap JSON in single quotes on
 curl -X POST http://localhost:8080/api/planted \
      -H "Content-Type: application/json" \
      -d '{
-           "farm_name":       "Green Valley 2",
+           "farm_name":       "Ogbomosho farms",
            "season":          "2025-Q2",
            "crop_type":       "Beans",
            "planting_area":   3.5,
@@ -167,7 +179,7 @@ curl -X POST http://localhost:8080/api/planted \
 curl -X POST http://localhost:8080/api/harvested \
      -H "Content-Type: application/json" \
      -d '{
-           "farm_name":      "Green Valley",
+           "farm_name":      "Ogbomosho farms",
            "season":         "2025-Q2",
            "crop_type":      "Maize",
            "actual_product": 1000
@@ -207,8 +219,8 @@ curl http://localhost:8080/api/reports/crops/2025-Q2
 * **Lombok not working in IntelliJ**
 
     1. Install the Lombok plugin:
-       `File > Settings > Plugins > Marketplace > Search for 'Lombok'`
+      
     2. Enable annotation processing:
-       `File > Settings > Build, Execution, Deployment > Compiler > Annotation Processors > Enable`
+       
 
 
