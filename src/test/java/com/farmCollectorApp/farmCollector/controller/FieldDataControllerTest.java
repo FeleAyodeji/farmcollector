@@ -31,21 +31,21 @@ class FieldDataControllerTest {
     @Test
     void savePlanted_validData_returnsSavedData() {
         FieldData input = FieldData.builder()
-                .season("2024")
-                .farmName("FarmA")
+                .season("2025-Q2")
+                .farmName("Ogbomosho Farms")
                 .cropType("Wheat")
-                .plantingArea(10.0)
-                .expectedProduct(100.0)
-                .actualProduct(90.0)
+                .plantingArea(5.0)
+                .expectedProduct(2000.0)
+                .actualProduct(1800.0)
                 .build();
         FieldData saved = FieldData.builder()
                 .id(1L)
-                .season("2024")
-                .farmName("FarmA")
+                .season("2025-Q2")
+                .farmName("Ogbomosho Farms")
                 .cropType("Wheat")
-                .plantingArea(10.0)
-                .expectedProduct(100.0)
-                .actualProduct(90.0)
+                .plantingArea(5.0)
+                .expectedProduct(2000.0)
+                .actualProduct(1800.0)
                 .build();
         when(service.save(input)).thenReturn(saved);
 
@@ -63,21 +63,21 @@ class FieldDataControllerTest {
     @Test
     void saveHarvested_validData_returnsSavedData() {
         FieldData input = FieldData.builder()
-                .season("2024")
-                .farmName("FarmB")
+                .season("2025-Q2")
+                .farmName("Ogbomosho Farms")
                 .cropType("Maize")
-                .plantingArea(12.0)
-                .expectedProduct(120.0)
-                .actualProduct(110.0)
+                .plantingArea(5.0)
+                .expectedProduct(2000.0)
+                .actualProduct(1800.0)
                 .build();
         FieldData saved = FieldData.builder()
                 .id(2L)
-                .season("2024")
-                .farmName("FarmB")
+                .season("2025-Q2")
+                .farmName("Ogbomosho Farms")
                 .cropType("Maize")
-                .plantingArea(12.0)
-                .expectedProduct(120.0)
-                .actualProduct(110.0)
+                .plantingArea(5.0)
+                .expectedProduct(2000.0)
+                .actualProduct(1800.0)
                 .build();
         when(service.save(input)).thenReturn(saved);
 
@@ -94,10 +94,10 @@ class FieldDataControllerTest {
 
     @Test
     void reportByFarm_validSeason_returnsReport() {
-        List<FarmReport> reports = List.of(new FarmReport("FarmA", 10.0, 8.0));
-        when(service.getFarmReport("2024")).thenReturn(reports);
+        List<FarmReport> reports = List.of(new FarmReport("Ogbomosho Farms", 3000.0, 2800.0));
+        when(service.getFarmReport("2025-Q2")).thenReturn(reports);
 
-        List<FarmReport> result = controller.reportByFarm("2024");
+        List<FarmReport> result = controller.reportByFarm("2025-Q2");
 
         assertEquals(reports, result);
     }
@@ -113,10 +113,10 @@ class FieldDataControllerTest {
 
     @Test
     void reportByCrop_validSeason_returnsReport() {
-        List<CropReport> reports = List.of(new CropReport("Wheat", 20.0, 18.0));
-        when(service.getCropReport("2024")).thenReturn(reports);
+        List<CropReport> reports = List.of(new CropReport("Wheat", 2000.0, 1800.0));
+        when(service.getCropReport("2025-Q2")).thenReturn(reports);
 
-        List<CropReport> result = controller.reportByCrop("2024");
+        List<CropReport> result = controller.reportByCrop("2025-Q2");
 
         assertEquals(reports, result);
     }
