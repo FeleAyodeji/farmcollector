@@ -1,8 +1,13 @@
 package com.farmCollectorApp.farmCollector.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
@@ -14,21 +19,16 @@ public class FieldData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonProperty("season")
+
     private String season;
 
-    @JsonProperty("farm_name")
     private String farmName;
 
-    @JsonProperty("crop_type")
     private String cropType;
 
-    @JsonProperty("planting_area")
     private Double plantingArea;
 
-    @JsonProperty("expected_product")
     private Double expectedProduct;
 
-    @JsonProperty("actual_product")
     private Double actualProduct;
 }
