@@ -218,9 +218,9 @@ curl http://localhost:8080/api/reports/crops/2025-Q2
 
 * **Lombok not working in IntelliJ**
 
-    1. Install the Lombok plugin:
+    1. Install the Lombok plugin
       
-    2. Enable annotation processing:
+    2. Enable annotation processing
        
 
 

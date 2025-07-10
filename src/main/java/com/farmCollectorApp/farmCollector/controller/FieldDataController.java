@@ -57,7 +57,7 @@ public class FieldDataController {
      * @return a list of all field data
      */
     @GetMapping("/reports/farm/{season}")
-    public List<FarmReport> reportByFarm(@PathVariable String season) {
+    public List<FarmReport> reportByFarm(@PathVariable("season") String season) {
         if (season == null || season.isEmpty()) {
             throw new NullPointerException("Season cannot be null or empty");
         }
@@ -72,7 +72,7 @@ public class FieldDataController {
      * @throws NullPointerException if the provided season is null or empty
      */
     @GetMapping("/reports/crops/{season}")
-    public List<CropReport> reportByCrop(@PathVariable String season) {
+    public List<CropReport> reportByCrop(@PathVariable("season") String season) {
         if (season == null || season.isEmpty()) {
             throw new NullPointerException("Season cannot be null or empty");
         }
