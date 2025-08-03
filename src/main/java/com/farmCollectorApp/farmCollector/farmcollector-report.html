@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Report - FarmCollector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            max-width: 900px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Code Report: FarmCollector</h1>
+<p><strong>Author:</strong> Fele Ayodeji</p>
+<p><strong>Date:</strong> July 14, 2025</p>
+
+<h2>1. Introduction</h2>
+<p>
+    This document summarizes the backend implementation of the <strong>FarmCollector</strong> system,
+    a Spring Boot application designed to collect and analyze agricultural data for planting and harvesting activities.
+    The project exposes REST APIs to collect data, generate seasonal reports, and serves those reports as HTML.
+</p>
+
+<h2>2. Technologies Used</h2>
+<ul>
+    <li>Java 21</li>
+    <li>Spring Boot 3.5.3</li>
+    <li>Spring Web & Spring Data JPA</li>
+    <li>H2 Database (in-memory for testing)</li>
+    <li>JUnit & Mockito for unit testing</li>
+    <li>IntelliJ IDEA, Postman</li>
+</ul>
+
+<h2>3. Features Implemented</h2>
+
+<h3>Planted Data</h3>
+<ul>
+    <li><code>POST /api/planted</code>: Collect planting data (farm name, crop type, area, expected product)</li>
+</ul>
+
+<h3>Harvested Data</h3>
+<ul>
+    <li><code>POST /api/harvested</code>: Collect actual harvest results for planted crops</li>
+</ul>
+
+<h3>Reports</h3>
+<ul>
+    <li><code>GET /report/farm?season=2025-Q2</code>: View seasonal farm-based report (HTML)</li>
+    <li><code>GET /report/crop?season=2025-Q2</code>: View seasonal crop-based report (HTML)</li>
+</ul>
+
+<h2>4. API Documentation</h2>
+<p>
+    Swagger UI is available for testing and documenting endpoints:
+    <br>
+    <code>http://localhost:8080/swagger-ui/index.html</code>
+</p>
+
+<h2>5. Unit Testing</h2>
+<ul>
+    <li>Used <code>JUnit 5</code> and <code>Mockito</code> to write unit tests for controller logic</li>
+    <li>Coverage includes planted, harvested, and report endpoints</li>
+</ul>
+
+<h2>6. Challenges and Solutions</h2>
+<ul>
+    <li>
+        <strong>Challenge:</strong> Preventing premature access to harvest before planting<br>
+        <strong>Solution:</strong> Validated data flow between planted and harvested records via service layer.
+    </li>
+    <li>
+        <strong>Challenge:</strong> Rendering human-readable reports via browser<br>
+        <strong>Solution:</strong> Used <code>produces = MediaType.TEXT_HTML_VALUE</code> to return raw HTML.
+    </li>
+</ul>
+
+<h2>7. Conclusion</h2>
+<p>
+    The FarmCollector project has been built with clean code structure, layered architecture,
+    API testing, and browser-based reporting in mind. It serves as a foundational backend
+    for real-time data collection and reporting for smallholder farms.
+</p>
+
+</body>
+</html>
