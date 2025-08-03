@@ -6,14 +6,16 @@ import com.farmCollectorApp.farmCollector.model.FieldData;
 import com.farmCollectorApp.farmCollector.service.FieldDataService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 class FieldDataControllerTest {
 
@@ -31,21 +33,21 @@ class FieldDataControllerTest {
     @Test
     void savePlanted_validData_returnsSavedData() {
         FieldData input = FieldData.builder()
-                .season("2025-Q2")
-                .farmName("Ogbomosho Farms")
-                .cropType("Wheat")
-                .plantingArea(5.0)
-                .expectedProduct(2000.0)
-                .actualProduct(1800.0)
+                .season("test-season")
+                .farmName("test-farm")
+                .cropType("test-crop")
+                .plantingArea(1.0)
+                .expectedProduct(100.0)
+                .actualProduct(null) // optional for planting
                 .build();
         FieldData saved = FieldData.builder()
                 .id(1L)
-                .season("2025-Q2")
-                .farmName("Ogbomosho Farms")
-                .cropType("Wheat")
-                .plantingArea(5.0)
-                .expectedProduct(2000.0)
-                .actualProduct(1800.0)
+                .season("test-season")
+                .farmName("test-farm")
+                .cropType("test-crop")
+                .plantingArea(1.0)
+                .expectedProduct(100.0)
+                .actualProduct(null)
                 .build();
         when(service.save(input)).thenReturn(saved);
 
@@ -63,21 +65,21 @@ class FieldDataControllerTest {
     @Test
     void saveHarvested_validData_returnsSavedData() {
         FieldData input = FieldData.builder()
-                .season("2025-Q2")
-                .farmName("Ogbomosho Farms")
-                .cropType("Maize")
-                .plantingArea(5.0)
-                .expectedProduct(2000.0)
-                .actualProduct(1800.0)
+                .season("test-season")
+                .farmName("test-farm")
+                .cropType("test-crop")
+                .plantingArea(1.0)
+                .expectedProduct(100.0)
+                .actualProduct(80.0)
                 .build();
         FieldData saved = FieldData.builder()
                 .id(2L)
-                .season("2025-Q2")
-                .farmName("Ogbomosho Farms")
-                .cropType("Maize")
-                .plantingArea(5.0)
-                .expectedProduct(2000.0)
-                .actualProduct(1800.0)
+                .season("test-season")
+                .farmName("test-farm")
+                .cropType("test-crop")
+                .plantingArea(1.0)
+                .expectedProduct(100.0)
+                .actualProduct(80.0)
                 .build();
         when(service.save(input)).thenReturn(saved);
 
@@ -94,10 +96,10 @@ class FieldDataControllerTest {
 
     @Test
     void reportByFarm_validSeason_returnsReport() {
-        List<FarmReport> reports = List.of(new FarmReport("Ogbomosho Farms", 3000.0, 2800.0));
-        when(service.getFarmReport("2025-Q2")).thenReturn(reports);
+        List<FarmReport> reports = List.of(new FarmReport("test-farm", 100.0, 80.0));
+        when(service.getFarmReport("test-season")).thenReturn(reports);
 
-        List<FarmReport> result = controller.reportByFarm("2025-Q2");
+        List<FarmReport> result = controller.reportByFarm("test-season");
 
         assertEquals(reports, result);
     }
@@ -113,10 +115,10 @@ class FieldDataControllerTest {
 
     @Test
     void reportByCrop_validSeason_returnsReport() {
-        List<CropReport> reports = List.of(new CropReport("Wheat", 2000.0, 1800.0));
-        when(service.getCropReport("2025-Q2")).thenReturn(reports);
+        List<CropReport> reports = List.of(new CropReport("test-crop", 100.0, 80.0));
+        when(service.getCropReport("test-season")).thenReturn(reports);
 
-        List<CropReport> result = controller.reportByCrop("2025-Q2");
+        List<CropReport> result = controller.reportByCrop("test-season");
 
         assertEquals(reports, result);
     }
