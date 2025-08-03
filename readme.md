@@ -1,7 +1,8 @@
 ````markdown
 # 🌾 FarmCollector API
 
-A Spring Boot application that collects and reports seasonal planting and harvesting data from farms. The API allows us to submit planting and harvesting records and generate reports by farm and crop per season.
+A Spring Boot application that collects and reports seasonal planting and harvesting data from farms. The API allows us
+to submit planting and harvesting records and generate reports by farm and crop per season.
 
 ---
 
@@ -80,11 +81,11 @@ The application will start on **port 8080** by default.
 
 ```json
 {
-  "farm_name":       "Ogbomosho farms",
-  "season":          "2025-Q2",
-  "crop_type":       "Maize",
-  "planting_area":   3.5,
-  "expected_product":1200
+  "farm_name": "Ogbomosho farms",
+  "season": "2025-Q2",
+  "crop_type": "Maize",
+  "planting_area": 3.5,
+  "expected_product": 1200
 }
 ```
 
@@ -98,9 +99,9 @@ The application will start on **port 8080** by default.
 
 ```json
 {
-  "farm_name":      "Ogbomosho farms",
-  "season":         "2025-Q2",
-  "crop_type":      "Maize",
+  "farm_name": "Ogbomosho farms",
+  "season": "2025-Q2",
+  "crop_type": "Maize",
   "actual_product": 1000
 }
 ```
@@ -122,9 +123,9 @@ GET /api/reports/farm/2025-Q2
 ```json
 [
   {
-    "farm_name":      "Ogbomosho farms",
+    "farm_name": "Ogbomosho farms",
     "expected_total": 1200,
-    "actual_total":   1000
+    "actual_total": 1000
   }
 ]
 ```
@@ -146,9 +147,9 @@ GET /api/reports/crops/2025-Q2
 ```json
 [
   {
-    "crop_type":      "Maize",
+    "crop_type": "Maize",
     "expected_total": 1200,
-    "actual_total":   1000
+    "actual_total": 1000
   }
 ]
 ```
@@ -157,7 +158,8 @@ GET /api/reports/crops/2025-Q2
 
 ## Testing with cURL
 
-Use the following `curl` commands in any terminal. If you're using Mac or Linux, make sure to put the JSON data inside single quotes
+Use the following `curl` commands in any terminal. If you're using Mac or Linux, make sure to put the JSON data inside
+single quotes
 
 ### ✅ Submit Planting Data
 
@@ -199,6 +201,15 @@ curl http://localhost:8080/api/reports/crops/2025-Q2
 ```
 
 ---
+---
+
+## API Testing
+
+The endpoints were tested using [Postman] (https://www.postman.com/) to verify the request and response structure,
+validate edge cases, and
+ensure data integrity.
+
+---
 
 ## Troubleshooting
 
@@ -219,7 +230,7 @@ curl http://localhost:8080/api/reports/crops/2025-Q2
 * **Lombok not working in IntelliJ**
 
     1. Install the Lombok plugin
-      
+
     2. Enable annotation processing
        
 
